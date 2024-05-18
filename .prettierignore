@@ -1,0 +1,30 @@
+# Ignore build and output directories
+/out
+/dist
+
+
+# Ignore node_modules directory
+/node_modules
+
+# Ignore static files
+/public
+
+# Ignore test files
+/__tests__
+
+# Ignore configuration files
+/.eslintrc
+/.babelrc
+/.prettierrc
+/.env
+
+# Ignore version control files
+/.git
+/.svn
+
+# Ignore temporary directories
+/temp
+
+# Ignore IDE directories
+/.idea
+/.vscode

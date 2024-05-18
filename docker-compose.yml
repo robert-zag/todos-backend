@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+    database:
+        image: postgres
+        container_name: todos-database
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: root
+            POSTGRES_DB: todos
+        ports:
+            - "5432:5432"
+        volumes:
+            - ./temp/postgres_data:/var/lib/postgresql/data
