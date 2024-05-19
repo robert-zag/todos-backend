@@ -14,4 +14,54 @@ model User {
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    todoLists UserTodoList[]
+    todoItems TodoItem[]
+}
+
+model TodoList {
+    id    String @id @default(cuid())
+    title String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    owners UserTodoList[]
+    items  TodoItem[]
+}
+
+model UserTodoList {
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    todoList TodoList @relation(fields: [todoListId], references: [id], onDelete: Cascade)
+
+    userId     String
+    todoListId String
+
+    @@id([userId, todoListId])
+}
+
+enum ItemStatus {
+    ACTIVE
+    COMPLETED
+    CANCELLED
+}
+
+model TodoItem {
+    id       String     @id @default(cuid())
+    title    String
+    text     String
+    deadLine DateTime
+    status   ItemStatus @default(ACTIVE)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    createdBy   User   @relation(fields: [createdById], references: [id])
+    createdById String
+
+    todoList   TodoList @relation(fields: [todoListId], references: [id], onDelete: Cascade)
+    todoListId String
 }

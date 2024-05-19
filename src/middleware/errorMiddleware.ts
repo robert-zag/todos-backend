@@ -1,6 +1,6 @@
 import { Request, NextFunction, Response } from "express"
 
-export default function errorMiddleware(err: Error, req: Request, res: Response, _next: NextFunction) {
+export default (err: Error, req: Request, res: Response, _next: NextFunction) => {
 	if (process.env.NODE_ENV === "development") {
 		console.error(err)
 	}
